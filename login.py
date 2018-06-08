@@ -2,6 +2,7 @@ from tkinter import *
 import os
 import selenium
 import time
+from random import randint
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import json
@@ -50,6 +51,33 @@ class Application(Frame):
 
         driver.find_element_by_name("commit").click()
         print ("Headless Chrome Initialized")
+
+    def rand_time(self):
+        return (0.5 + randint(0, 15)/10)
+    
+    def next_town(self):
+        try:
+            search = driver.find_element_by_css_selector(".btn_next_town")
+            search.click()
+            search = driver.find_element_by_css_selector(".btn_jump_to_town")
+            search.click()
+            print("Next City")
+            time.sleep(rand_time())
+        except:
+            print("Failed changing the city")
+            time.sleep(2) 
+
+    def queue_speed(self):
+        try:
+            gratis = driver.find_element_by_css_selector(".btn_time_reduction")
+            if(gratis.text == "gratis"):
+                gratis.click()
+                print("Queue speeded")
+                time.sleep(3)
+            else:
+                print("Failed Queue speeded")
+        except:
+            print("Failed Queue speeded")
 
 
 window =Tk()
