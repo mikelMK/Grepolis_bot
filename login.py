@@ -57,12 +57,10 @@ class Application(Frame):
     
     def next_town(self):
         try:
-            search = driver.find_element_by_css_selector(".btn_next_town")
-            search.click()
-            search = driver.find_element_by_css_selector(".btn_jump_to_town")
-            search.click()
+            search = driver.find_element_by_css_selector(".btn_next_town").click
             print("Next City")
             time.sleep(rand_time())
+            return (driver.find_element_by_id("current_city"))
         except:
             print("Failed changing the city")
             time.sleep(2) 
@@ -78,6 +76,18 @@ class Application(Frame):
                 print("Failed Queue speeded")
         except:
             print("Failed Queue speeded")
+
+    def number_of_cities(self):
+        try:
+            list_of_cities = []
+            current_city = driver.find_element_by_id("current_city")
+            if current_city != next_town():
+                list_of_cities.append(next_town)
+            else:
+                pass
+
+        except:
+            print("failed counting cities")
 
 
 window =Tk()
